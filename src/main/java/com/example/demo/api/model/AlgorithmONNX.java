@@ -24,7 +24,7 @@ public class AlgorithmONNX extends Algorithm {
 
     public float predict(JSONArray values) throws OrtException{
 
-        long[] shape = new long[] {1, 12, 1};
+        long[] shape = new long[] {1, 36, 1};
 
         FloatBuffer buffer = FloatBuffer.allocate(values.length());
         for (int i = 0; i < values.length(); i++) {

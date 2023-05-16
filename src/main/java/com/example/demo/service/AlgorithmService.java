@@ -27,7 +27,7 @@ public class AlgorithmService {
                 algo.loadAlgorithm();
             }
             catch (Exception e){
-
+                System.out.println("Can't load model " + algo.getName());
             }
         }
 

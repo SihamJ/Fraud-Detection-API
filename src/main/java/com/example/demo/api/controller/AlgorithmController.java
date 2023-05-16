@@ -33,8 +33,14 @@ public class AlgorithmController {
         }catch (JSONException err){
             return new HashMap<String, Object>(){
                 {
-                    put("message", "Failed to load JSON request: " + err.toString());
-                    put("isFraud", -1);
+                    put("KEYVALUES", "");
+                    put("RQUID","");
+                    put("RESULTID","");
+                    put("ERRORCODE","");
+                    put("ERRORDESC", "");
+                    put("MESSAGE", "Failed to load JSON request: " + err.toString());
+                    put("ISFRAUD", -1);
+
                 }
             };
         }
@@ -50,8 +56,13 @@ public class AlgorithmController {
             if( ! algorithm.isLoaded()){
                 return new HashMap<String, Object>(){
                     {
-                        put("message", "Failed to load " + algoDescription);
-                        put("isFraud", -1);
+                        put("KEYVALUES", "");
+                        put("RQUID","");
+                        put("RESULTID","");
+                        put("ERRORCODE","");
+                        put("ERRORDESC", "");
+                        put("MESSAGE", "Failed to load " + algoDescription);
+                        put("ISFRAUD", -1);
                     }
                 };
             }
@@ -63,16 +74,26 @@ public class AlgorithmController {
             catch(Exception e) {
                 return new HashMap<String, Object>() {
                     {
-                        put("message", "Failed to predict with " + algoDescription + ": " + e.toString());
-                        put("isFraud", -1);
+                        put("KEYVALUES", "");
+                        put("RQUID","");
+                        put("RESULTID","");
+                        put("ERRORCODE","");
+                        put("ERRORDESC", "");
+                        put("MESSAGE", "Failed to predict with " + algoDescription + ": " + e.toString());
+                        put("ISFRAUD", -1);
                     }
                 };
             }
             float finalY = y;
             return new HashMap<String, Object>(){
                     {
-                        put("message", "Predicted with " + algoDescription);
-                        put("isFraud", finalY);
+                        put("KEYVALUES", "");
+                        put("RQUID","");
+                        put("RESULTID","");
+                        put("ERRORCODE","");
+                        put("ERRORDESC", "");
+                        put("MESSAGE", "Predicted with " + algoDescription);
+                        put("ISFRAUD", finalY);
                     }
             };
         }
@@ -80,8 +101,13 @@ public class AlgorithmController {
 
         return new HashMap<String, Object>(){
             {
-                put("message", "Can't find algorithm in Database");
-                put("isFraud", -1);
+                put("KEYVALUES", "");
+                put("RQUID","");
+                put("RESULTID","");
+                put("ERRORCODE","");
+                put("ERRORDESC", "");
+                put("MESSAGE", "Can't find algorithm in Database");
+                put("ISFRAUD", -1);
             }
         };
     }
