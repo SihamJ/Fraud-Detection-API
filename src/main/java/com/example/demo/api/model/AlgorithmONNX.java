@@ -1,15 +1,20 @@
 package com.example.demo.api.model;
 
+import java.lang.reflect.Array;
 import java.nio.FloatBuffer;
 import java.util.Collections;
 import ai.onnxruntime.*;
-import org.json.JSONArray;
+import com.example.demo.utils.Utils;
+import javax.lang.model.type.NullType;
+import java.util.*;
 
 public class AlgorithmONNX extends Algorithm {
 
     private OrtEnvironment env;
     private OrtSession.SessionOptions opts;
     private OrtSession session;
+
+    private String modelFolder;
 
     public AlgorithmONNX(int id, String name, String description, String filename, int type){
         super(id, name, description, filename, type);
@@ -18,26 +23,35 @@ public class AlgorithmONNX extends Algorithm {
     public void loadAlgorithm() throws OrtException {
         this.env = OrtEnvironment.getEnvironment();
         this.opts = new OrtSession.SessionOptions();
-        this.session = env.createSession("/home/sihartist/Desktop/JavaAPI/src/main/resources/models/" + this.getFilename(), opts);
+
+        this.modelFolder = Utils.models_folder;
+        this.session = env.createSession(this.modelFolder + this.getFilename(), opts);
         this.loaded = Boolean.TRUE;
     }
 
-    public float predict(JSONArray values) throws OrtException{
+    public float predict(Map<String, Object> values) throws OrtException{
 
-        long[] shape = new long[] {1, 36, 1};
+        ArrayList<String> inputs = new ArrayList<>(values.keySet());
 
-        FloatBuffer buffer = FloatBuffer.allocate(values.length());
-        for (int i = 0; i < values.length(); i++) {
-            buffer.put(values.getFloat(i));
+        ArrayList<OnnxTensor> tensors = new ArrayList<>(values.size());
+
+        for(Object v : values.values()){
+            FloatBuffer val =  FloatBuffer.allocate(1);
+            val.put(Float.parseFloat(v.toString()));
+            val.rewind();
+            long[] s = {1, 1};
+            tensors.add(OnnxTensor.createTensor(env, val, s));
         }
-        buffer.rewind();
 
-        OnnxTensor tensor = OnnxTensor.createTensor(env, buffer, shape);
-        System.out.println(tensor.getInfo());
+        Map<String, OnnxTensor> input_map = new LinkedHashMap<String, OnnxTensor>();
+        for (int i=0; i < tensors.size(); i++) {
+            input_map.put(inputs.get(i), tensors.get(i));
+        }
 
-        OrtSession.Result result = session.run(Collections.singletonMap("conv1d_input", tensor), Collections.singleton("dense_1"));
+        OrtSession.Result result = session.run(input_map);
 
         OnnxTensor resultTensor = (OnnxTensor) result.get(0);
+
         float[][] outputValues = (float[][]) resultTensor.getValue();
 
         result.close();
@@ -45,5 +59,41 @@ public class AlgorithmONNX extends Algorithm {
         return outputValues[0][0];
     }
 
+    public Map<String, Object> transform(Map<String, Object> values) throws OrtException{
+
+        ArrayList<String> inputs = new ArrayList<>(values.keySet());
+
+        ArrayList<OnnxTensor> tensors = new ArrayList<>(values.size());
+
+        for(Object v : values.values()){
+                FloatBuffer val =  FloatBuffer.allocate(1);
+                val.put(Float.parseFloat(v.toString()));
+                val.rewind();
+                long[] s = {1, 1};
+                tensors.add(OnnxTensor.createTensor(env, val, s));
+        }
+
+        Map<String, OnnxTensor> input_map = new HashMap<String, OnnxTensor>();
+        for (int i=0; i < tensors.size(); i++) {
+            input_map.put(inputs.get(i), tensors.get(i));
+        }
+
+        OrtSession.Result result = session.run(input_map);
+
+        OnnxTensor resultTensor = (OnnxTensor) result.get(0);
+
+        float[][] outputValues = (float[][]) resultTensor.getValue();
+
+        result.close();
+
+        Map<String, Object> new_data = new LinkedHashMap<>();
+        ArrayList<String> output_names = new ArrayList<String>(this.session.getOutputNames());
+
+        for(int i=0; i < inputs.size(); i++){
+            new_data.put(Utils.final_order[i], outputValues[0][i]);
+        }
+
+        return new_data;
+    }
 
 }

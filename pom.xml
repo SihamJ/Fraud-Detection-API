@@ -63,10 +63,29 @@
 		</dependency>
 
 		<dependency>
+			<groupId>ai.onnx</groupId>
+			<artifactId>onnxruntime</artifactId>
+			<version>1.8.0</version>
+		</dependency>
+
+		<dependency>
 			<groupId>org.json</groupId>
 			<artifactId>json</artifactId>
 			<version>20230227</version>
 		</dependency>
+
+		<dependency>
+			<groupId>javax.json</groupId>
+			<artifactId>javax.json-api</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+
+		<dependency>
+			<groupId>org.glassfish</groupId>
+			<artifactId>javax.json</artifactId>
+			<version>1.1.4</version>
+		</dependency>
+
 
 	</dependencies>
 

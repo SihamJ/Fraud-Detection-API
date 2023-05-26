@@ -2,7 +2,6 @@ package com.example.demo.api.model;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.List;
@@ -13,6 +12,9 @@ import org.json.JSONArray;
 import org.xml.sax.SAXException;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
+
+import com.example.demo.utils.Utils;
+
 
 public class AlgorithmPMML extends Algorithm {
 
@@ -26,7 +28,8 @@ public class AlgorithmPMML extends Algorithm {
 
     public void loadAlgorithm()  throws JAXBException, IOException, SAXException {
 
-        this.modelFolder = AlgorithmPMML.class.getClassLoader().getResource("models").getPath();
+        //this.modelFolder = AlgorithmPMML.class.getClassLoader().getResource("models").getPath();
+        this.modelFolder = Utils.models_folder;
 
         this.modelPath = Paths.get(modelFolder, this.getFilename());
         this.evaluator = new LoadingModelEvaluatorBuilder()
@@ -37,26 +40,30 @@ public class AlgorithmPMML extends Algorithm {
         this.loaded = Boolean.TRUE;
     }
 
-    public float predict(JSONArray values){
+    public float predict(Map<String, Object> values){
 
-        FieldName targetName = this.evaluator.getTargetFields().get(0).getName();
-        List<InputField> inputFields = this.evaluator.getInputFields();
-
-        Map<FieldName, FieldValue> arguments = new LinkedHashMap<>();
-
-        for(int i=0; i < inputFields.size(); i++){
-            InputField inputField = inputFields.get(i);
-            arguments.put(inputField.getName(), inputField.prepare(values.getFloat(i)));
-        }
-
-        Map<FieldName, ?> results = this.evaluator.evaluate(arguments);// Extracting prediction
-        Map<String, ?> resultRecord = EvaluatorUtil.decodeAll(results);
-
-        float y = ((Integer)resultRecord.get(targetName.toString())).floatValue();
-
-        return y;
+//        FieldName targetName = this.evaluator.getTargetFields().get(0).getName();
+//        List<InputField> inputFields = this.evaluator.getInputFields();
+//
+//        Map<FieldName, FieldValue> arguments = new LinkedHashMap<>();
+//
+//        for(int i=0; i < inputFields.size(); i++){
+//            InputField inputField = inputFields.get(i);
+//            arguments.put(inputField.getName(), inputField.prepare(values.getFloat(i)));
+//        }
+//
+//        Map<FieldName, ?> results = this.evaluator.evaluate(arguments);// Extracting prediction
+//        Map<String, ?> resultRecord = EvaluatorUtil.decodeAll(results);
+//
+//        float y = ((Integer)resultRecord.get(targetName.toString())).floatValue();
+//
+//        return y;
+        return 0;
     }
 
+    public Map<String, Object> transform(Map<String, Object> transaction){
+        return transaction;
+    }
 
 
 }

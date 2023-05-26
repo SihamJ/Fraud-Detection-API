@@ -1,7 +1,12 @@
 package com.example.demo.api.model;
 
 
+import ai.onnxruntime.OnnxTensor;
 import org.json.JSONArray;
+
+import java.util.Collection;
+import java.util.Map;
+import java.util.Set;
 
 public abstract class Algorithm {
     protected int id;
@@ -55,7 +60,8 @@ public abstract class Algorithm {
         return this.loaded;
     }
 
-    public abstract float predict(JSONArray values) throws Exception;
+    public abstract float predict(Map<String, Object> values) throws Exception;
+    public abstract Map transform(Map<String, Object> values) throws Exception;
     public abstract void loadAlgorithm() throws Exception;
 
 

@@ -17,17 +17,16 @@ public class AlgorithmService {
 
         Algorithm SVM = new AlgorithmPMML(Utils.SVM, "SVM","Support Vector Machine" , "svm.pmml", Utils.PMML);
         Algorithm RF = new AlgorithmPMML(Utils.RANDOM_FOREST, "RF","Random Forest", "rf.pmml", Utils.PMML);
-        Algorithm CNN = new AlgorithmONNX(Utils.CNN, "CNN", "Convolutional Neural Network","cnn_2.onnx", Utils.ONNX);
+        Algorithm CNN = new AlgorithmONNX(Utils.CNN, "CNN", "Convolutional Neural Network","cnn.onnx", Utils.ONNX);
         Algorithm DT = new AlgorithmPMML(Utils.DECISION_TREE, "DT", "Decision Tree","dtree.pmml", Utils.PMML);
 
         this.algorithmList.addAll(Arrays.asList(CNN, SVM, RF, DT));
-
         for( Algorithm algo : this.algorithmList){
             try {
                 algo.loadAlgorithm();
             }
             catch (Exception e){
-                System.out.println("Can't load model " + algo.getName());
+                System.out.println("\nCan't load model " + algo.getName() + "\n" + e.toString());
             }
         }
 
