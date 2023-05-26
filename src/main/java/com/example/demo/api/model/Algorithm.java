@@ -12,14 +12,16 @@ public abstract class Algorithm {
     protected int id;
     protected String name;
     protected String description;
+    protected String modelFolder;
     protected String filename;
     protected int type;
     protected Boolean loaded;
 
-    public Algorithm(int id, String name, String description, String filename, int type){
+    public Algorithm(int id, String name, String description, String folder, String filename, int type){
         this.id = id;
         this.name = name;
         this.description = description;
+        this.modelFolder = folder;
         this.filename = filename;
         this.type = type;
         this.loaded = Boolean.FALSE;
@@ -48,6 +50,7 @@ public abstract class Algorithm {
     public void setFilename(String filename){
         this.filename = filename;
     }
+    public String getModelFolder(){ return this.modelFolder; }
 
     public int getType() {
         return this.type;

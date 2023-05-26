@@ -22,8 +22,8 @@ public class AlgorithmPMML extends Algorithm {
     private String modelFolder;
     private Path modelPath;
 
-    public AlgorithmPMML(int id, String name, String description, String filename, int type){
-        super(id, name, description, filename, type);
+    public AlgorithmPMML(int id, String name, String description, String folder, String filename, int type){
+        super(id, name, description, folder, filename, type);
     }
 
     public void loadAlgorithm()  throws JAXBException, IOException, SAXException {

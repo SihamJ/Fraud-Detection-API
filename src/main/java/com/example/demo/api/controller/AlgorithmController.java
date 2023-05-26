@@ -56,19 +56,19 @@ public class AlgorithmController {
             Algorithm algorithm = (Algorithm) algo.get();
             String algoDescription = algorithm.getDescription();
 
-            if (!algorithm.isLoaded()) {
-                return new HashMap<String, Object>() {
-                    {
-                        put("KEYVALUES", "");
-                        put("RQUID", "");
-                        put("RESULTID", "SystemError");
-                        put("ERRORCODE", "00001");
-                        put("ERRORDESC", "SYSTEM_ERROR");
-                        put("MESSAGE", "Failed to load " + algoDescription);
-                        put("ISFRAUD", -1);
-                    }
-                };
-            }
+//            if (!algorithm.isLoaded()) {
+//                return new HashMap<String, Object>() {
+//                    {
+//                        put("KEYVALUES", "");
+//                        put("RQUID", "");
+//                        put("RESULTID", "SystemError");
+//                        put("ERRORCODE", "00001");
+//                        put("ERRORDESC", "SYSTEM_ERROR");
+//                        put("MESSAGE", "Failed to load " + algoDescription);
+//                        put("ISFRAUD", -1);
+//                    }
+//                };
+//            }
 
             /**
              * Add Preprocessing Here
@@ -80,7 +80,7 @@ public class AlgorithmController {
 
             Map<String, Object> transaction = utils.toMap(tr_object);
 
-            Preprocessing preprocesser = new Preprocessing("preprocessor.onnx", "ordinal_encoder.json");
+            Preprocessing preprocesser = new Preprocessing("mmscaler.onnx", "ordinal_encoder.json", "std.onnx");
             preprocesser.load();
 
             transaction = preprocesser.transform(transaction);

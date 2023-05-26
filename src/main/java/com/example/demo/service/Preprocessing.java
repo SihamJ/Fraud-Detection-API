@@ -14,21 +14,24 @@ import java.time.LocalDate;
 import ai.onnxruntime.*;
 
 public class Preprocessing {
-    private String modelFolder;
+    private String folder;
     private Path scalerPath;
     private String encoderPath;
     protected String scalerFile;
+    protected String stdScalerFile;
     protected String encoderFile;
     protected Boolean loaded;
     Map<String, Object> encoder_map;
 
     AlgorithmONNX min_max_scaler;
+    AlgorithmONNX std_scaler;
 
-    public Preprocessing(String scalerFile, String encoderFile){
+    public Preprocessing(String scalerFile, String encoderFile, String stdScalerFile){
         this.scalerFile = scalerFile;
         this.encoderFile = encoderFile;
+        this.stdScalerFile = stdScalerFile;
         this.loaded = Boolean.FALSE;
-        this.modelFolder = Utils.models_folder;
+        this.folder = Utils.preprocessing_folder;
     }
 
     public void load() {
@@ -42,8 +45,11 @@ public class Preprocessing {
     }
     public void loadScaler()  throws OrtException {
         try{
-            this.min_max_scaler = new AlgorithmONNX(Utils.CNN, "MMScaler", "Min Max Scaler",this.getScalerFile(), Utils.MMSCALER);
+            this.min_max_scaler = new AlgorithmONNX(Utils.MMSCALER, "MMScaler", "Min Max Scaler", this.getFolder(), this.getScalerFile(), Utils.ONNX);
             this.min_max_scaler.loadAlgorithm();
+
+            this.std_scaler = new AlgorithmONNX(Utils.MMSCALER, "STDScaler", "STD Scaler", this.getFolder(), this.getSTDScalerFile(), Utils.ONNX);
+            this.std_scaler.loadAlgorithm();
         }
         catch(OrtException e){
             e.printStackTrace();
@@ -52,7 +58,7 @@ public class Preprocessing {
 
     public void loadEncoder()   {
 
-        this.encoderPath = this.modelFolder + this.getEncoderFile();
+        this.encoderPath = this.folder + this.getEncoderFile();
 
         try (JsonReader reader = Json.createReader(new FileReader(this.encoderPath))) {
             JsonObject json_encoder = reader.readObject();
@@ -186,6 +192,17 @@ public class Preprocessing {
         return transaction;
     }
 
+    public Map<String, Object> stdScale(Map<String, Object> transaction) throws OrtException{
+
+        try{
+            transaction = this.std_scaler.transform(transaction);
+        }
+        catch(OrtException e){
+            e.printStackTrace();
+        }
+        return transaction;
+    }
+
     public Map<String, Object> transform(Map<String, Object> transaction) {
 
         try{
@@ -194,18 +211,26 @@ public class Preprocessing {
             transaction = this.scale(transaction);
             transaction = Utils.applyMap(transaction, Utils.cos_cols, Math::cos);
             transaction = Utils.applyMap(transaction, Utils.sin_cols, Math::sin);
-
+            System.out.println(transaction);
+            transaction = this.stdScale(transaction);
+            System.out.println(transaction);
         }
         catch (Exception e){
             e.printStackTrace();
         }
         return transaction;
     }
-
+    public String getFolder() {
+        return this.folder;
+    }
     public String getScalerFile() {
         return this.scalerFile;
     }
     public String getEncoderFile() {
         return this.encoderFile;
+    }
+
+    public String getSTDScalerFile(){
+        return this.stdScalerFile;
     }
 }

@@ -15,10 +15,10 @@ public class AlgorithmService {
 
         this.algorithmList = new ArrayList<>();
 
-        Algorithm SVM = new AlgorithmPMML(Utils.SVM, "SVM","Support Vector Machine" , "svm.pmml", Utils.PMML);
-        Algorithm RF = new AlgorithmPMML(Utils.RANDOM_FOREST, "RF","Random Forest", "rf.pmml", Utils.PMML);
-        Algorithm CNN = new AlgorithmONNX(Utils.CNN, "CNN", "Convolutional Neural Network","cnn.onnx", Utils.ONNX);
-        Algorithm DT = new AlgorithmPMML(Utils.DECISION_TREE, "DT", "Decision Tree","dtree.pmml", Utils.PMML);
+        Algorithm SVM = new AlgorithmPMML(Utils.SVM, "SVM","Support Vector Machine", Utils.models_folder, "svm.pmml", Utils.PMML);
+        Algorithm RF = new AlgorithmPMML(Utils.RANDOM_FOREST, "RF","Random Forest", Utils.models_folder, "rf.pmml", Utils.PMML);
+        Algorithm CNN = new AlgorithmONNX(Utils.CNN, "CNN", "Convolutional Neural Network", Utils.models_folder,"cnn.onnx", Utils.ONNX);
+        Algorithm DT = new AlgorithmPMML(Utils.DECISION_TREE, "DT", "Decision Tree", Utils.models_folder,"dtree.pmml", Utils.PMML);
 
         this.algorithmList.addAll(Arrays.asList(CNN, SVM, RF, DT));
         for( Algorithm algo : this.algorithmList){

@@ -14,18 +14,14 @@ public class AlgorithmONNX extends Algorithm {
     private OrtSession.SessionOptions opts;
     private OrtSession session;
 
-    private String modelFolder;
-
-    public AlgorithmONNX(int id, String name, String description, String filename, int type){
-        super(id, name, description, filename, type);
+    public AlgorithmONNX(int id, String name, String description, String folder, String filename, int type){
+        super(id, name, description, folder, filename, type);
     }
 
     public void loadAlgorithm() throws OrtException {
         this.env = OrtEnvironment.getEnvironment();
         this.opts = new OrtSession.SessionOptions();
-
-        this.modelFolder = Utils.models_folder;
-        this.session = env.createSession(this.modelFolder + this.getFilename(), opts);
+        this.session = env.createSession(this.getModelFolder() + this.getFilename(), opts);
         this.loaded = Boolean.TRUE;
     }
 
