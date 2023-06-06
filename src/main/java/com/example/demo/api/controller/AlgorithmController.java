@@ -1,9 +1,9 @@
 package com.example.demo.api.controller;
 
 import com.example.demo.api.model.Algorithm;
-import com.example.demo.service.AlgorithmService;
-import com.example.demo.service.Preprocessing;
+import com.example.demo.service.*;
 import com.example.demo.utils.Utils;
+import org.apache.commons.math3.analysis.function.Acos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.json.*;
@@ -80,31 +80,27 @@ public class AlgorithmController {
 
             Map<String, Object> transaction = utils.toMap(tr_object);
 
-            Preprocessing preprocesser = new Preprocessing("mmscaler.onnx", "ordinal_encoder.json", "std.onnx");
-            preprocesser.load();
+            Pipeline clf = algorithmService.getPipeline();
+            clf.addClassifier(algorithm);
 
-            transaction = preprocesser.transform(transaction);
-
-            return transaction;
-
-            /*float y = -1.0f;
+            long y = -1;
             try {
-                y = (float) algorithm.predict(transaction);
+                y = clf.predict(transaction);
             }
             catch(Exception e) {
                 return new HashMap<String, Object>() {
                     {
                         put("KEYVALUES", "");
-                        put("RQUID","");
-                        put("RESULTID","SystemError");
-                        put("ERRORCODE","00001");
+                        put("RQUID", "");
+                        put("RESULTID", "SystemError");
+                        put("ERRORCODE", "00001");
                         put("ERRORDESC", "SYSTEM_ERROR");
                         put("MESSAGE", "Failed to predict with " + algoDescription + ": " + e.toString());
                         put("ISFRAUD", -1);
                     }
                 };
             }
-            float finalY = y;
+            long finalY = y;
             return new HashMap<String, Object>(){
                     {
                         put("KEYVALUES", "");
@@ -115,7 +111,7 @@ public class AlgorithmController {
                         put("MESSAGE", "Predicted with " + algoDescription);
                         put("ISFRAUD", finalY);
                     }
-            };*/
+            };
         }
 
 

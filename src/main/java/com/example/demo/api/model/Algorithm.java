@@ -63,8 +63,7 @@ public abstract class Algorithm {
         return this.loaded;
     }
 
-    public abstract float predict(Map<String, Object> values) throws Exception;
-    public abstract Map transform(Map<String, Object> values) throws Exception;
+    public abstract long predict(Map<String, Object> values) throws Exception;
     public abstract void loadAlgorithm() throws Exception;
 
 

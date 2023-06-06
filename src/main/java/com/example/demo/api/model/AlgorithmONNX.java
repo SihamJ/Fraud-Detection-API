@@ -25,7 +25,7 @@ public class AlgorithmONNX extends Algorithm {
         this.loaded = Boolean.TRUE;
     }
 
-    public float predict(Map<String, Object> values) throws OrtException{
+    public long predict(Map<String, Object> values) throws OrtException{
 
         ArrayList<String> inputs = new ArrayList<>(values.keySet());
 
@@ -48,48 +48,13 @@ public class AlgorithmONNX extends Algorithm {
 
         OnnxTensor resultTensor = (OnnxTensor) result.get(0);
 
-        float[][] outputValues = (float[][]) resultTensor.getValue();
+        Object a = resultTensor.getValue();
+
+        long[] outputValues = (long[]) resultTensor.getValue();
 
         result.close();
 
-        return outputValues[0][0];
-    }
-
-    public Map<String, Object> transform(Map<String, Object> values) throws OrtException{
-
-        ArrayList<String> inputs = new ArrayList<>(values.keySet());
-
-        ArrayList<OnnxTensor> tensors = new ArrayList<>(values.size());
-
-        for(Object v : values.values()){
-                FloatBuffer val =  FloatBuffer.allocate(1);
-                val.put(Float.parseFloat(v.toString()));
-                val.rewind();
-                long[] s = {1, 1};
-                tensors.add(OnnxTensor.createTensor(env, val, s));
-        }
-
-        Map<String, OnnxTensor> input_map = new HashMap<String, OnnxTensor>();
-        for (int i=0; i < tensors.size(); i++) {
-            input_map.put(inputs.get(i), tensors.get(i));
-        }
-
-        OrtSession.Result result = session.run(input_map);
-
-        OnnxTensor resultTensor = (OnnxTensor) result.get(0);
-
-        float[][] outputValues = (float[][]) resultTensor.getValue();
-
-        result.close();
-
-        Map<String, Object> new_data = new LinkedHashMap<>();
-        ArrayList<String> output_names = new ArrayList<String>(this.session.getOutputNames());
-
-        for(int i=0; i < inputs.size(); i++){
-            new_data.put(Utils.final_order[i], outputValues[0][i]);
-        }
-
-        return new_data;
+        return outputValues[0];
     }
 
 }

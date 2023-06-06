@@ -40,25 +40,23 @@ public class AlgorithmPMML extends Algorithm {
         this.loaded = Boolean.TRUE;
     }
 
-    public float predict(Map<String, Object> values){
+    public long predict(Map<String, Object> values){
 
-//        FieldName targetName = this.evaluator.getTargetFields().get(0).getName();
-//        List<InputField> inputFields = this.evaluator.getInputFields();
-//
-//        Map<FieldName, FieldValue> arguments = new LinkedHashMap<>();
-//
-//        for(int i=0; i < inputFields.size(); i++){
-//            InputField inputField = inputFields.get(i);
-//            arguments.put(inputField.getName(), inputField.prepare(values.getFloat(i)));
-//        }
-//
-//        Map<FieldName, ?> results = this.evaluator.evaluate(arguments);// Extracting prediction
-//        Map<String, ?> resultRecord = EvaluatorUtil.decodeAll(results);
-//
-//        float y = ((Integer)resultRecord.get(targetName.toString())).floatValue();
-//
-//        return y;
-        return 0;
+        FieldName targetName = this.evaluator.getTargetFields().get(0).getName();
+        List<InputField> inputFields = this.evaluator.getInputFields();
+        Map<FieldName, FieldValue> arguments = new LinkedHashMap<>();
+
+        for(int i=0; i < inputFields.size(); i++){
+            InputField inputField = inputFields.get(i);
+            arguments.put(inputField.getName(), inputField.prepare(Float.parseFloat(values.get(inputField.getName().toString()).toString())));
+        }
+
+        Map<FieldName, ?> results = this.evaluator.evaluate(arguments);// Extracting prediction
+        Map<String, ?> resultRecord = EvaluatorUtil.decodeAll(results);
+
+        long y = ((Integer)resultRecord.get(targetName.toString())).intValue();
+
+        return y;
     }
 
     public Map<String, Object> transform(Map<String, Object> transaction){
