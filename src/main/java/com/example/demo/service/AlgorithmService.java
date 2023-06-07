@@ -29,12 +29,19 @@ public class AlgorithmService {
         this.clf.load();
         System.out.println("\nPipeline loaded.");
 
-        Algorithm SVM = new AlgorithmPMML(Utils.SVM, "SVM","Support Vector Machine", Utils.models_folder, "svm.pmml", Utils.PMML);
-        //Algorithm RF = new AlgorithmPMML(Utils.RANDOM_FOREST, "RF","Random Forest", Utils.models_folder, "rf.pmml", Utils.PMML);
+        Algorithm SVM = new AlgorithmPMML(Utils.SVM, "SVM","Support Vector Machine", Utils.models_folder, "SVM.pmml", Utils.PMML);
+        Algorithm LR = new AlgorithmPMML(Utils.LR, "LR","Logistic Regression", Utils.models_folder, "LR.pmml", Utils.PMML);
+        Algorithm KNN = new AlgorithmPMML(Utils.KNN, "KNN","K Nearest Neighbour", Utils.models_folder, "KNN.pmml", Utils.PMML);
+        Algorithm RF = new AlgorithmPMML(Utils.RANDOM_FOREST, "RF","Random Forest", Utils.models_folder, "RF.pmml", Utils.PMML);
         //Algorithm CNN = new AlgorithmONNX(Utils.CNN, "CNN", "Convolutional Neural Network", Utils.models_folder,"cnn.onnx", Utils.ONNX);
-        //Algorithm DT = new AlgorithmPMML(Utils.DECISION_TREE, "DT", "Decision Tree", Utils.models_folder,"dtree.pmml", Utils.PMML);
+        Algorithm DT = new AlgorithmPMML(Utils.DECISION_TREE, "DT", "Decision Tree", Utils.models_folder,"DTree.pmml", Utils.PMML);
+        Algorithm XGB = new AlgorithmPMML(Utils.XGB, "XGB", "Extreme Gradient Boosting", Utils.models_folder,"XGB.pmml", Utils.PMML);
+        Algorithm XT = new AlgorithmPMML(Utils.XT, "XT", "Extra Trees", Utils.models_folder,"XT.pmml", Utils.PMML);
+        Algorithm GNB = new AlgorithmPMML(Utils.GNB, "GNB", "Gaussian Naive Bayes", Utils.models_folder,"GNB.pmml", Utils.PMML);
+        Algorithm LDA = new AlgorithmPMML(Utils.LDA, "LDA", "Linear Discriminant Analysis", Utils.models_folder,"LDA.pmml", Utils.PMML);
 
-        this.algorithmList.addAll(Arrays.asList(SVM));
+
+        this.algorithmList.addAll(Arrays.asList(SVM, LR, DT, XGB, RF, XT, GNB, LDA));
         for( Algorithm algo : this.algorithmList){
             try {
                 algo.loadAlgorithm();

@@ -122,7 +122,7 @@ public class AlgorithmController {
                 put("RESULTID","SystemError");
                 put("ERRORCODE","00001");
                 put("ERRORDESC", "SYSTEM_ERROR");
-                put("MESSAGE", "Can't find algorithm in Database");
+                put("MESSAGE", "Can't find algorithm " + algoName + " in Database");
                 put("ISFRAUD", -1);
             }
         };

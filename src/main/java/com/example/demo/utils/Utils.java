@@ -14,6 +14,12 @@ public class Utils {
     public static final int 	RANDOM_FOREST 		= 2;
     public static final int 	CNN 	= 3;
     public static final int 	DECISION_TREE 				= 4;
+    public static final int     LR                          = 5;
+    public static final int     KNN                         = 6;
+    public static final int     XGB                         = 7;
+    public static final int     XT                          = 8;
+    public static final int     LDA                         = 9;
+    public static final int     GNB                         = 10;
 
     public static final int     MMSCALER                    = 50;
 

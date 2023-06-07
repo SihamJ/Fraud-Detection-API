@@ -8,7 +8,6 @@ import java.util.List;
 
 import org.dmg.pmml.FieldName;
 import org.jpmml.evaluator.*;
-import org.json.JSONArray;
 import org.xml.sax.SAXException;
 import javax.xml.bind.JAXBException;
 import java.io.IOException;
@@ -44,6 +43,7 @@ public class AlgorithmPMML extends Algorithm {
 
         FieldName targetName = this.evaluator.getTargetFields().get(0).getName();
         List<InputField> inputFields = this.evaluator.getInputFields();
+
         Map<FieldName, FieldValue> arguments = new LinkedHashMap<>();
 
         for(int i=0; i < inputFields.size(); i++){
