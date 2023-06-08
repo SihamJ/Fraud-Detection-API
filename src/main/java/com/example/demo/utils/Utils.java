@@ -20,6 +20,7 @@ public class Utils {
     public static final int     XT                          = 8;
     public static final int     LDA                         = 9;
     public static final int     GNB                         = 10;
+    public static final int     AE                          = 11;
 
     public static final int     MMSCALER                    = 50;
 

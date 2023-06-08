@@ -27,7 +27,12 @@ public class AlgorithmONNX extends Algorithm {
 
     public long predict(Map<String, Object> values) throws OrtException{
 
-        long[] shape = new long[] {1, 36, 1};
+        long[] shape = ((TensorInfo) session.getInputInfo().get("transaction_input").getInfo()).getShape();//new long[] {1, 36};//, 1};
+        for(int i = 0; i < shape.length; i++){
+            if(shape[i] == -1){
+                shape[i] = 1;
+            }
+        }
 
         FloatBuffer buffer = FloatBuffer.allocate(values.size());
         for (String s: values.keySet()) {
@@ -36,9 +41,8 @@ public class AlgorithmONNX extends Algorithm {
         buffer.rewind();
 
         OnnxTensor tensor = OnnxTensor.createTensor(env, buffer, shape);
-        System.out.println(tensor.getInfo());
 
-        OrtSession.Result result = session.run(Collections.singletonMap("transaction_input", tensor), Collections.singleton("isFraud"));
+        OrtSession.Result result = session.run(Collections.singletonMap(session.getInputNames().stream().toList().get(0), tensor), Collections.singleton(session.getOutputNames().stream().toList().get(0)));
 
         OnnxTensor resultTensor = (OnnxTensor) result.get(0);
         float[][] outputValues = (float[][]) resultTensor.getValue();
