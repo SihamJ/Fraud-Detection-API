@@ -27,7 +27,7 @@ public class AlgorithmONNX extends Algorithm {
 
     public long predict(Map<String, Object> values) throws OrtException{
 
-        long[] shape = ((TensorInfo) session.getInputInfo().get("transaction_input").getInfo()).getShape();//new long[] {1, 36};//, 1};
+        long[] shape = ((TensorInfo) session.getInputInfo().get("transaction_input").getInfo()).getShape();
         for(int i = 0; i < shape.length; i++){
             if(shape[i] == -1){
                 shape[i] = 1;

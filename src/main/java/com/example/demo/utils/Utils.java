@@ -21,6 +21,8 @@ public class Utils {
     public static final int     LDA                         = 9;
     public static final int     GNB                         = 10;
     public static final int     AE                          = 11;
+    public static final int     KMEANS                      = 12;
+    public static final int     LOF                         = 13;
 
     public static final int     MMSCALER                    = 50;
 
