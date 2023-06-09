@@ -29,8 +29,8 @@ public class Utils {
     public static final int     ONNX                        = 100;
     public static final int     PMML                        = 101;
 
-    public static final String models_folder                = "/home/sihartist/Desktop/fraud-detection/models/";
-    public static final String preprocessing_folder                = "/home/sihartist/Desktop/fraud-detection/preprocessing/";
+    public static final String models_folder                = "/home/sihartist/Desktop/SpringAPI/src/main/resources/models/";
+    public static final String preprocessing_folder                = "/home/sihartist/Desktop/SpringAPI/src/main/resources/models/";
 
     public static final String[] categorical_features       = {"V1", "V2", "V3", "V4", "V12", "V13", "V16", "V19", "V21", "V22", "V25", "V26", "V27"};
     public static final String[] toDrop                     = {"V5", "V11","V14","V15","V17","V18","V20", "CLASS"};

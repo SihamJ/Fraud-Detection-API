@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="SkLearn2PMML package" version="0.90.4"/>
+		<Timestamp>2023-06-08T17:05:12Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension name="repr">PMMLPipeline(steps=[('K-MEANS', KMeans(n_clusters=2, n_init=20, random_state=42))])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="COS_V6_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V6_month_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V7_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V7_month_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V8_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V8_month_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V23_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V23_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V6_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V6_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V7_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V7_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V8_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V8_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V23_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V23_month_" optype="continuous" dataType="double"/>
+		<DataField name="V1" optype="continuous" dataType="double"/>
+		<DataField name="V2" optype="continuous" dataType="double"/>
+		<DataField name="V3" optype="continuous" dataType="double"/>
+		<DataField name="V4" optype="continuous" dataType="double"/>
+		<DataField name="V9" optype="continuous" dataType="double"/>
+		<DataField name="V10" optype="continuous" dataType="double"/>
+		<DataField name="V12" optype="continuous" dataType="double"/>
+		<DataField name="V13" optype="continuous" dataType="double"/>
+		<DataField name="V16" optype="continuous" dataType="double"/>
+		<DataField name="V19" optype="continuous" dataType="double"/>
+		<DataField name="V21" optype="continuous" dataType="double"/>
+		<DataField name="V22" optype="continuous" dataType="double"/>
+		<DataField name="V24" optype="continuous" dataType="double"/>
+		<DataField name="V25" optype="continuous" dataType="double"/>
+		<DataField name="V26" optype="continuous" dataType="double"/>
+		<DataField name="V27" optype="continuous" dataType="double"/>
+		<DataField name="V6_year" optype="continuous" dataType="double"/>
+		<DataField name="V7_year" optype="continuous" dataType="double"/>
+		<DataField name="V8_year" optype="continuous" dataType="double"/>
+		<DataField name="V23_year" optype="continuous" dataType="double"/>
+	</DataDictionary>
+	<ClusteringModel functionName="clustering" algorithmName="sklearn.cluster._kmeans.KMeans" modelClass="centerBased" numberOfClusters="2">
+		<MiningSchema>
+			<MiningField name="COS_V6_day_"/>
+			<MiningField name="COS_V6_month_"/>
+			<MiningField name="COS_V7_day_"/>
+			<MiningField name="COS_V7_month_"/>
+			<MiningField name="COS_V8_day_"/>
+			<MiningField name="COS_V8_month_"/>
+			<MiningField name="COS_V23_day_"/>
+			<MiningField name="COS_V23_month_"/>
+			<MiningField name="SIN_V6_day_"/>
+			<MiningField name="SIN_V6_month_"/>
+			<MiningField name="SIN_V7_day_"/>
+			<MiningField name="SIN_V7_month_"/>
+			<MiningField name="SIN_V8_day_"/>
+			<MiningField name="SIN_V8_month_"/>
+			<MiningField name="SIN_V23_day_"/>
+			<MiningField name="SIN_V23_month_"/>
+			<MiningField name="V1"/>
+			<MiningField name="V2"/>
+			<MiningField name="V3"/>
+			<MiningField name="V4"/>
+			<MiningField name="V9"/>
+			<MiningField name="V10"/>
+			<MiningField name="V12"/>
+			<MiningField name="V13"/>
+			<MiningField name="V16"/>
+			<MiningField name="V19"/>
+			<MiningField name="V21"/>
+			<MiningField name="V22"/>
+			<MiningField name="V24"/>
+			<MiningField name="V25"/>
+			<MiningField name="V26"/>
+			<MiningField name="V27"/>
+			<MiningField name="V6_year"/>
+			<MiningField name="V7_year"/>
+			<MiningField name="V8_year"/>
+			<MiningField name="V23_year"/>
+		</MiningSchema>
+		<Output>
+			<OutputField name="cluster" optype="categorical" dataType="string">
+				<Value value="0"/>
+				<Value value="1"/>
+			</OutputField>
+			<OutputField name="affinity(0)" optype="continuous" dataType="double" feature="affinity" value="0"/>
+			<OutputField name="affinity(1)" optype="continuous" dataType="double" feature="affinity" value="1"/>
+		</Output>
+		<ComparisonMeasure kind="distance">
+			<squaredEuclidean/>
+		</ComparisonMeasure>
+		<ClusteringField field="COS_V6_day_"/>
+		<ClusteringField field="COS_V6_month_"/>
+		<ClusteringField field="COS_V7_day_"/>
+		<ClusteringField field="COS_V7_month_"/>
+		<ClusteringField field="COS_V8_day_"/>
+		<ClusteringField field="COS_V8_month_"/>
+		<ClusteringField field="COS_V23_day_"/>
+		<ClusteringField field="COS_V23_month_"/>
+		<ClusteringField field="SIN_V6_day_"/>
+		<ClusteringField field="SIN_V6_month_"/>
+		<ClusteringField field="SIN_V7_day_"/>
+		<ClusteringField field="SIN_V7_month_"/>
+		<ClusteringField field="SIN_V8_day_"/>
+		<ClusteringField field="SIN_V8_month_"/>
+		<ClusteringField field="SIN_V23_day_"/>
+		<ClusteringField field="SIN_V23_month_"/>
+		<ClusteringField field="V1"/>
+		<ClusteringField field="V2"/>
+		<ClusteringField field="V3"/>
+		<ClusteringField field="V4"/>
+		<ClusteringField field="V9"/>
+		<ClusteringField field="V10"/>
+		<ClusteringField field="V12"/>
+		<ClusteringField field="V13"/>
+		<ClusteringField field="V16"/>
+		<ClusteringField field="V19"/>
+		<ClusteringField field="V21"/>
+		<ClusteringField field="V22"/>
+		<ClusteringField field="V24"/>
+		<ClusteringField field="V25"/>
+		<ClusteringField field="V26"/>
+		<ClusteringField field="V27"/>
+		<ClusteringField field="V6_year"/>
+		<ClusteringField field="V7_year"/>
+		<ClusteringField field="V8_year"/>
+		<ClusteringField field="V23_year"/>
+		<Cluster id="0" size="35858">
+			<Array type="real">0.38279015094776264 -0.2085823035631965 0.0 -0.212019190913138 -0.05534920703614637 0.054238020113792515 -0.07925634243611425 -0.12377545282379862 0.38279015094778557 0.02716879734063976 -9.860761315262648E-32 0.019344363934313803 0.17605844554827355 0.09187969531793877 0.14140130699251346 -0.036306744615601766 -0.06905149015756379 -0.13565373847779977 0.034231882016690335 0.18262628965639485 -0.04802569442559215 -0.009123256876959612 -0.0012126937895341676 -0.0011007222619694897 1.1896683092196962 0.3866643236335124 0.034042796982757834 0.055718179150619544 -0.05115198878335591 -6.64109844443554E-4 -0.007380401867627801 -0.03146962020847941 1.4112466426003 1.4127079972392946 1.4182093832524256 1.4182093832524256</Array>
+		</Cluster>
+		<Cluster id="1" size="76665">
+			<Array type="real">-0.17962153991626487 0.09968117011438969 0.0 0.10125697600108034 0.02509971724966865 -0.028077534558894907 0.0374342748181956 0.05788423112705616 -0.17962153991624194 -0.014960789016694053 -9.860761315262648E-32 -0.011123515339773644 -0.08264630290773364 -0.03842497676882933 -0.06633281997398625 0.01753475641105651 0.030898417194466853 0.06132928924386004 -0.01544059867709118 -0.08520618261536234 0.020266560960158924 0.0046646098538347305 0.0024511640690858412 0.003743423420719885 -0.5565297958165317 -0.1788825649753172 -0.019388385906554773 -0.030059909016177427 0.026444351666150823 -0.0011390317329935708 0.004659006102351523 0.014374583079439937 -0.6612821188579205 -0.6621275959778232 -0.6645079113431022 -0.6645079113431022</Array>
+		</Cluster>
+	</ClusteringModel>
+</PMML>
