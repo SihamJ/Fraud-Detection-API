@@ -31,7 +31,7 @@ public class AlgorithmService {
         Algorithm SVM = new AlgorithmPMML(Utils.SVM, "SVM","Support Vector Machine", Utils.models_folder, "SVM.pmml", Utils.PMML);
         Algorithm LR = new AlgorithmPMML(Utils.LR, "LR","Logistic Regression", Utils.models_folder, "LR.pmml", Utils.PMML);
         //Algorithm KNN = new AlgorithmPMML(Utils.KNN, "KNN","K Nearest Neighbour", Utils.models_folder, "KNN.pmml", Utils.PMML);
-        Algorithm RF = new AlgorithmPMML(Utils.RANDOM_FOREST, "RF","Random Forest", Utils.models_folder, "RF.pmml", Utils.PMML);
+        //Algorithm RF = new AlgorithmPMML(Utils.RANDOM_FOREST, "RF","Random Forest", Utils.models_folder, "RF.pmml", Utils.PMML);
         Algorithm CNN = new AlgorithmONNX(Utils.CNN, "CNN", "Convolutional Neural Network", Utils.models_folder,"CNN.onnx", Utils.ONNX);
         Algorithm AE = new AlgorithmONNX(Utils.AE, "AE", "Auto Encoder", Utils.models_folder,"AE.onnx", Utils.ONNX);
         Algorithm DT = new AlgorithmPMML(Utils.DECISION_TREE, "DT", "Decision Tree", Utils.models_folder,"DTree.pmml", Utils.PMML);
@@ -42,7 +42,7 @@ public class AlgorithmService {
         //Algorithm KMEANS = new AlgorithmPMML(Utils.KMEANS, "KMEANS", "KMEANS", Utils.models_folder, "KMEANS.pmml", Utils.PMML);
         //Algorithm LOF = new AlgorithmONNX(Utils.LOF, "LOF", "Local Outlier Factor", Utils.models_folder,"LOF.onnx", Utils.ONNX);
 
-        this.algorithmList.addAll(Arrays.asList(SVM, LR, DT, XGB, RF, XT, GNB, LDA, CNN, AE));
+        this.algorithmList.addAll(Arrays.asList(SVM, LR, DT, XGB, XT, GNB, LDA, CNN, AE));
 
         for( Algorithm algo : this.algorithmList){
             try {
