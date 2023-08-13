@@ -1,0 +1,465 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<PMML xmlns="http://www.dmg.org/PMML-4_4" xmlns:data="http://jpmml.org/jpmml-model/InlineTable" version="4.4">
+	<Header>
+		<Application name="SkLearn2PMML package" version="0.90.4"/>
+		<Timestamp>2023-06-07T10:24:36Z</Timestamp>
+	</Header>
+	<MiningBuildTask>
+		<Extension name="repr">PMMLPipeline(steps=[('GaussianNB', GaussianNB())])</Extension>
+	</MiningBuildTask>
+	<DataDictionary>
+		<DataField name="isFraud" optype="categorical" dataType="integer">
+			<Value value="0"/>
+			<Value value="1"/>
+		</DataField>
+		<DataField name="COS_V6_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V6_month_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V7_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V7_month_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V8_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V8_month_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V23_day_" optype="continuous" dataType="double"/>
+		<DataField name="COS_V23_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V6_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V6_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V7_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V7_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V8_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V8_month_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V23_day_" optype="continuous" dataType="double"/>
+		<DataField name="SIN_V23_month_" optype="continuous" dataType="double"/>
+		<DataField name="V1" optype="continuous" dataType="double"/>
+		<DataField name="V2" optype="continuous" dataType="double"/>
+		<DataField name="V3" optype="continuous" dataType="double"/>
+		<DataField name="V4" optype="continuous" dataType="double"/>
+		<DataField name="V9" optype="continuous" dataType="double"/>
+		<DataField name="V10" optype="continuous" dataType="double"/>
+		<DataField name="V12" optype="continuous" dataType="double"/>
+		<DataField name="V13" optype="continuous" dataType="double"/>
+		<DataField name="V16" optype="continuous" dataType="double"/>
+		<DataField name="V19" optype="continuous" dataType="double"/>
+		<DataField name="V21" optype="continuous" dataType="double"/>
+		<DataField name="V22" optype="continuous" dataType="double"/>
+		<DataField name="V24" optype="continuous" dataType="double"/>
+		<DataField name="V25" optype="continuous" dataType="double"/>
+		<DataField name="V26" optype="continuous" dataType="double"/>
+		<DataField name="V27" optype="continuous" dataType="double"/>
+		<DataField name="V6_year" optype="continuous" dataType="double"/>
+		<DataField name="V7_year" optype="continuous" dataType="double"/>
+		<DataField name="V8_year" optype="continuous" dataType="double"/>
+		<DataField name="V23_year" optype="continuous" dataType="double"/>
+	</DataDictionary>
+	<NaiveBayesModel threshold="0.0" functionName="classification" algorithmName="sklearn.naive_bayes.GaussianNB">
+		<MiningSchema>
+			<MiningField name="isFraud" usageType="target"/>
+			<MiningField name="COS_V6_day_"/>
+			<MiningField name="COS_V6_month_"/>
+			<MiningField name="COS_V7_day_"/>
+			<MiningField name="COS_V7_month_"/>
+			<MiningField name="COS_V8_day_"/>
+			<MiningField name="COS_V8_month_"/>
+			<MiningField name="COS_V23_day_"/>
+			<MiningField name="COS_V23_month_"/>
+			<MiningField name="SIN_V6_day_"/>
+			<MiningField name="SIN_V6_month_"/>
+			<MiningField name="SIN_V7_day_"/>
+			<MiningField name="SIN_V7_month_"/>
+			<MiningField name="SIN_V8_day_"/>
+			<MiningField name="SIN_V8_month_"/>
+			<MiningField name="SIN_V23_day_"/>
+			<MiningField name="SIN_V23_month_"/>
+			<MiningField name="V1"/>
+			<MiningField name="V2"/>
+			<MiningField name="V3"/>
+			<MiningField name="V4"/>
+			<MiningField name="V9"/>
+			<MiningField name="V10"/>
+			<MiningField name="V12"/>
+			<MiningField name="V13"/>
+			<MiningField name="V16"/>
+			<MiningField name="V19"/>
+			<MiningField name="V21"/>
+			<MiningField name="V22"/>
+			<MiningField name="V24"/>
+			<MiningField name="V25"/>
+			<MiningField name="V26"/>
+			<MiningField name="V27"/>
+			<MiningField name="V6_year"/>
+			<MiningField name="V7_year"/>
+			<MiningField name="V8_year"/>
+			<MiningField name="V23_year"/>
+		</MiningSchema>
+		<Output>
+			<OutputField name="probability(0)" optype="continuous" dataType="double" feature="probability" value="0"/>
+			<OutputField name="probability(1)" optype="continuous" dataType="double" feature="probability" value="1"/>
+		</Output>
+		<BayesInputs>
+			<BayesInput fieldName="COS_V6_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.1862140232678974" variance="0.2975709544788833"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.18428035398546952" variance="1.6268601031582484"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="COS_V6_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.014678872368072674" variance="0.9685005622419902"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.009643514820683938" variance="1.027022395828189"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="COS_V7_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.0" variance="1.0488794981413062E-9"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.0" variance="1.0488794981413062E-9"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="COS_V7_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.010325781806856182" variance="0.9716851308553468"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.005746471191627491" variance="1.023623786295333"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="COS_V8_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.0221079372229084" variance="0.9568706821708949"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.024445031600257388" variance="1.0447335713360308"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="COS_V8_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.03678993099800119" variance="1.0111828969132115"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.03268635771572167" variance="0.9866620270129882"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="COS_V23_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.025158059051899554" variance="0.6771133627992432"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.02167754545835207" variance="1.2856703290806768"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="COS_V23_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.04299160774154193" variance="0.6442071427721333"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.03903070017643789" variance="1.3015386037535055"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V6_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.1862140232678909" variance="0.29757095447888376"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.18428035398547538" variance="1.6268601031582488"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V6_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.031624355071251525" variance="1.0362540321921534"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.036500189075337676" variance="0.9630860877772842"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V7_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-9.860761315262648E-32" variance="1.0488794981413062E-9"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-9.860761315262648E-32" variance="1.0488794981413062E-9"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V7_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.02759957248186222" variance="1.0347128727553256"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.03190493277702196" variance="0.9658303892221899"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V8_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.06215037446058412" variance="0.9710815394838311"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.06408387942174126" variance="1.0210465680300136"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V8_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.0026790346780702612" variance="0.9854679418045569"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.007850364203390161" variance="1.0125888722762326"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V23_day_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.03845927335796653" variance="0.7425393835335184"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.037767855794544516" variance="1.254023626586593"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="SIN_V23_month_">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.008275705978764746" variance="0.6695520738478814"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.011511435980738855" variance="1.3357642175242135"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V1">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.501532268612805" variance="0.1832347836273312"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.5000142649285417" variance="1.3135710527844258"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V2">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.40305144190876013" variance="0.23400327506671187"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.4036810074866035" variance="1.44081482327865"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V3">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.015558582783374278" variance="1.0488794981413062E-9"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.019390614561141026" variance="2.0949252594118626"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V4">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.11102730231679131" variance="1.593492175679727"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.11101327168902572" variance="0.3892090714169778"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V9">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.21591406981226208" variance="0.9185068108837613"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.21845821457493025" variance="0.9854301195660291"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V10">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.20776486191506577" variance="0.8745454943587336"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.2076982884400758" variance="1.037687324985447"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V12">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.07400979191154408" variance="1.560789733033328E-5"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.07435922006824545" variance="2.010345982454915"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V13">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.03355682441799361" variance="3.5012708800402853E-4"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.028426282664291622" variance="1.9800879268038596"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V16">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.027535020430341683" variance="0.9550202496279516"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.02739126469370412" variance="1.037859646633457"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V19">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.17244552185131246" variance="0.9092642486325259"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.1777739843061075" variance="1.028262199005686"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V21">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.10003375301720577" variance="0.2969934411138416"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.09240189483283177" variance="1.669884053700997"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V22">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.029979218873739447" variance="0.7415639230265001"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.02361717909730347" variance="1.2510507257126424"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V24">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.21230813767600576" variance="0.9212547021069728"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.21042300267244676" variance="0.988358927644624"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V25">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.0" variance="1.0488794981413062E-9"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.004207385327537019" variance="2.021325956031035"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V26">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="-0.0843924552646278" variance="1.0488794981413062E-9"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="0.082084907439533" variance="1.9731385615052563"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V27">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.058131806063348716" variance="0.7947920967419287"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.05979588383579897" variance="1.2018110576003"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V6_year">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.06160487691692835" variance="0.9658917109984863"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.06342604532677926" variance="1.0285887293625646"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V7_year">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.058927121918557" variance="0.9655091946770245"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.061197255338388865" variance="1.0293013442740548"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V8_year">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.0711288755073167" variance="0.9803725451398078"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.07403691074466924" variance="1.0059148082138119"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+			<BayesInput fieldName="V23_year">
+				<TargetValueStats>
+					<TargetValueStat value="0">
+						<GaussianDistribution mean="0.0711288755073167" variance="0.9803725451398078"/>
+					</TargetValueStat>
+					<TargetValueStat value="1">
+						<GaussianDistribution mean="-0.07403691074466924" variance="1.0059148082138119"/>
+					</TargetValueStat>
+				</TargetValueStats>
+			</BayesInput>
+		</BayesInputs>
+		<BayesOutput fieldName="isFraud">
+			<TargetValueCounts>
+				<TargetValueCount value="0" count="47069"/>
+				<TargetValueCount value="1" count="47169"/>
+			</TargetValueCounts>
+		</BayesOutput>
+	</NaiveBayesModel>
+</PMML>
