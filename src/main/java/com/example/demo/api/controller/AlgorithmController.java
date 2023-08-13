@@ -20,11 +20,6 @@ public class AlgorithmController {
         this.algorithmService = algorithmService;
     }
 
-    @GetMapping("/hello")
-    public String sayHello(){
-        return "Hello World";
-    }
-
     @RequestMapping(value = "/predict", method = RequestMethod.POST)
     public Map predict(@RequestBody String payload) throws Exception {
 
