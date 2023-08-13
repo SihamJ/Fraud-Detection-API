@@ -1,12 +1,7 @@
 package com.example.demo.api.model;
 
 
-import ai.onnxruntime.OnnxTensor;
-import org.json.JSONArray;
-
-import java.util.Collection;
 import java.util.Map;
-import java.util.Set;
 
 public abstract class Algorithm {
     protected int id;
@@ -68,3 +63,4 @@ public abstract class Algorithm {
 
 
 }
+

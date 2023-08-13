@@ -42,7 +42,7 @@ public class AlgorithmONNX extends Algorithm {
 
         OnnxTensor tensor = OnnxTensor.createTensor(env, buffer, shape);
 
-        OrtSession.Result result = session.run(Collections.singletonMap(session.getInputNames().stream().toList().get(0), tensor), Collections.singleton(session.getOutputNames().stream().toList().get(0)));
+        OrtSession.Result result = session.run(Collections.singletonMap((session.getInputNames().stream()).toList().get(0), tensor), Collections.singleton(session.getOutputNames().stream().toList().get(0)));
 
         OnnxTensor resultTensor = (OnnxTensor) result.get(0);
         float[][] outputValues = (float[][]) resultTensor.getValue();
@@ -52,7 +52,8 @@ public class AlgorithmONNX extends Algorithm {
         return (long) outputValues[0][0];
     }
 
-    /*public long predict(Map<String, Object> values) throws OrtException{
+    
+/*public long predict(Map<String, Object> values) throws OrtException{
 
         ArrayList<String> inputs = new ArrayList<>(values.keySet());
 

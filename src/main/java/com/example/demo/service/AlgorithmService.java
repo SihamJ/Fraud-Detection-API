@@ -3,7 +3,6 @@ package com.example.demo.service;
 import com.example.demo.api.model.*;
 import org.springframework.stereotype.Component;
 import com.example.demo.utils.Utils;
-import com.example.demo.service.Pipeline;
 import java.util.Optional;
 import java.util.*;
 
@@ -59,7 +58,7 @@ public class AlgorithmService {
     }
 
     public Optional<Algorithm> getAlgorithm(Integer id){
-        Optional optional = Optional.empty();
+        Optional<Algorithm> optional = Optional.empty();
         for(Algorithm algo: algorithmList){
             if(id == algo.getId()){
                 optional = Optional.of(algo);
@@ -70,7 +69,7 @@ public class AlgorithmService {
     }
 
     public Optional<Algorithm> getAlgorithm(String name){
-        Optional optional = Optional.empty();
+        Optional<Algorithm> optional = Optional.empty();
         for(Algorithm algo: algorithmList){
             if(name.equals(algo.getName())){
                 optional = Optional.of(algo);
@@ -84,3 +83,4 @@ public class AlgorithmService {
         return this.clf;
     }
 }
+

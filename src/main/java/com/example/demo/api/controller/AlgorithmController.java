@@ -3,7 +3,6 @@ package com.example.demo.api.controller;
 import com.example.demo.api.model.Algorithm;
 import com.example.demo.service.*;
 import com.example.demo.utils.Utils;
-import org.apache.commons.math3.analysis.function.Acos;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import javax.json.*;
@@ -35,7 +34,7 @@ public class AlgorithmController {
             data = jsonReader.readObject();
             jsonReader.close();
 
-        } catch (JsonException err) {
+        } catch (final JsonException err) {
             return new HashMap<String, Object>() {
                 {
                     put("KEYVALUES", "");
@@ -48,13 +47,13 @@ public class AlgorithmController {
                 }
             };
         }
-        String algoName = data.getString("algo");
+        final String algoName = data.getString("algo");
 
         Optional algo = algorithmService.getAlgorithm(algoName);
 
         if (algo.isPresent()) {
             Algorithm algorithm = (Algorithm) algo.get();
-            String algoDescription = algorithm.getDescription();
+            final String algoDescription = algorithm.getDescription();
 
 //            if (!algorithm.isLoaded()) {
 //                return new HashMap<String, Object>() {
@@ -70,9 +69,9 @@ public class AlgorithmController {
 //                };
 //            }
 
-            /**
-             * Add Preprocessing Here
-             */
+            // Add Preprocessing Here
+             
+
 
             Utils utils = new Utils();
 
@@ -87,7 +86,7 @@ public class AlgorithmController {
             try {
                 y = clf.predict(transaction);
             }
-            catch(Exception e) {
+            catch(final Exception e) {
                 return new HashMap<String, Object>() {
                     {
                         put("KEYVALUES", "");
@@ -100,7 +99,7 @@ public class AlgorithmController {
                     }
                 };
             }
-            long finalY = y;
+            final long finalY = y;
             return new HashMap<String, Object>(){
                     {
                         put("KEYVALUES", "");
