@@ -40,16 +40,18 @@ public class AlgorithmONNX extends Algorithm {
         }
         buffer.rewind();
 
-        OnnxTensor tensor = OnnxTensor.createTensor(env, buffer, shape);
+        // OnnxTensor tensor = OnnxTensor.createTensor(env, buffer, shape);
 
-        OrtSession.Result result = session.run(Collections.singletonMap((session.getInputNames().stream()).toList().get(0), tensor), Collections.singleton(session.getOutputNames().stream().toList().get(0)));
+        // OrtSession.Result result = session.run(Collections.singletonMap((session.getInputNames().stream()).toList().get(0), tensor), Collections.singleton(session.getOutputNames().stream().toList().get(0)));
 
-        OnnxTensor resultTensor = (OnnxTensor) result.get(0);
-        float[][] outputValues = (float[][]) resultTensor.getValue();
+        // OnnxTensor resultTensor = (OnnxTensor) result.get(0);
+        // float[][] outputValues = (float[][]) resultTensor.getValue();
 
-        result.close();
+        // result.close();
 
-        return (long) outputValues[0][0];
+        // return (long) outputValues[0][0];
+
+        return 0;
     }
 
     
