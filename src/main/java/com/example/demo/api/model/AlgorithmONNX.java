@@ -1,12 +1,9 @@
 package com.example.demo.api.model;
 
-import java.lang.reflect.Array;
 import java.nio.FloatBuffer;
-import java.util.Collections;
 import ai.onnxruntime.*;
-import com.example.demo.utils.Utils;
-import javax.lang.model.type.NullType;
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class AlgorithmONNX extends Algorithm {
 
@@ -21,7 +18,12 @@ public class AlgorithmONNX extends Algorithm {
     public void loadAlgorithm() throws OrtException {
         this.env = OrtEnvironment.getEnvironment();
         this.opts = new OrtSession.SessionOptions();
-        this.session = env.createSession(this.getModelFolder() + this.getFilename(), opts);
+
+        String modelFolder = AlgorithmONNX.class.getClassLoader().getResource(this.getFilename()).getPath();
+
+        //String file = IOUtils.toString(AlgorithmONNX.class.getClassLoader().getResourceAsStream(this.getFilename()));
+
+        this.session = env.createSession(modelFolder, opts);
         this.loaded = Boolean.TRUE;
     }
 
@@ -40,18 +42,18 @@ public class AlgorithmONNX extends Algorithm {
         }
         buffer.rewind();
 
-        // OnnxTensor tensor = OnnxTensor.createTensor(env, buffer, shape);
+        OnnxTensor tensor = OnnxTensor.createTensor(env, buffer, shape);
 
-        // OrtSession.Result result = session.run(Collections.singletonMap((session.getInputNames().stream()).toList().get(0), tensor), Collections.singleton(session.getOutputNames().stream().toList().get(0)));
+        OrtSession.Result result = session.run(Collections.singletonMap((session.getInputNames().stream()).collect(Collectors.toList()).get(0), tensor), Collections.singleton(session.getOutputNames().stream().collect(Collectors.toList()).get(0)));
 
-        // OnnxTensor resultTensor = (OnnxTensor) result.get(0);
-        // float[][] outputValues = (float[][]) resultTensor.getValue();
+        OnnxTensor resultTensor = (OnnxTensor) result.get(0);
+        float[][] outputValues = (float[][]) resultTensor.getValue();
 
-        // result.close();
+        result.close();
 
-        // return (long) outputValues[0][0];
+        return (long) outputValues[0][0];
 
-        return 0;
+        
     }
 
     

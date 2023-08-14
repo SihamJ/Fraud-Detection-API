@@ -13,12 +13,19 @@ import java.util.*;
 @RestController
 public class AlgorithmController {
 
+    @GetMapping("/welcome")
+    public String welcome(){
+        return "Welcome to spring boot heroku demo";
+    }
+
     @Autowired
     private AlgorithmService algorithmService;
 
     public AlgorithmController(AlgorithmService algorithmService){
         this.algorithmService = algorithmService;
     }
+
+
 
     @RequestMapping(value = "/predict", method = RequestMethod.POST)
     public Map predict(@RequestBody String payload) throws Exception {
@@ -72,7 +79,7 @@ public class AlgorithmController {
 
             JsonObject tr_object = (JsonObject) data.get("transaction");
 
-            Map<String, Object> transaction = utils.toMap(tr_object);
+            Map<String, Object> transaction = Utils.toMap(tr_object);
 
             Pipeline clf = algorithmService.getPipeline();
             clf.addClassifier(algorithm);

@@ -8,8 +8,14 @@ import java.util.List;
 
 import org.dmg.pmml.FieldName;
 import org.jpmml.evaluator.*;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ClassPathResource;
+import org.springframework.core.io.Resource;
+import org.springframework.core.io.ResourceLoader;
 import org.xml.sax.SAXException;
 import javax.xml.bind.JAXBException;
+
+import java.io.File;
 import java.io.IOException;
 
 import com.example.demo.utils.Utils;
@@ -21,19 +27,29 @@ public class AlgorithmPMML extends Algorithm {
     private String modelFolder;
     private Path modelPath;
 
+
+
     public AlgorithmPMML(int id, String name, String description, String folder, String filename, int type){
         super(id, name, description, folder, filename, type);
     }
 
     public void loadAlgorithm()  throws JAXBException, IOException, SAXException {
+        
 
-        //this.modelFolder = AlgorithmPMML.class.getClassLoader().getResource("models").getPath();
-        this.modelFolder = Utils.models_folder;
+        this.modelFolder = AlgorithmPMML.class.getClassLoader().getResource(this.getFilename()).getPath();
+        // this.modelFolder = Utils.models_folder;
 
-        this.modelPath = Paths.get(modelFolder, this.getFilename());
+        //File file = new File(getClass().getClassLoader().getResource(this.getFilename()).getFile());
+
+        this.modelPath = Paths.get(modelFolder);
+        
         this.evaluator = new LoadingModelEvaluatorBuilder()
                 .load(modelPath.toFile())
                 .build();
+
+        // this.evaluator = new LoadingModelEvaluatorBuilder()
+        //         .load(resource.getFile())
+        //         .build();
 
         this.evaluator.verify();
         this.loaded = Boolean.TRUE;

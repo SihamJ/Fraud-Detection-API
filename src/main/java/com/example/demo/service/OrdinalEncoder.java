@@ -1,5 +1,6 @@
 package com.example.demo.service;
 
+import com.example.demo.api.model.AlgorithmPMML;
 import com.example.demo.utils.Utils;
 
 import javax.json.Json;
@@ -19,7 +20,9 @@ public class OrdinalEncoder extends Transformer{
     }
 
     public void load(){
-        this.encoderPath = this.getFolderName() + this.getFilename();
+
+        String modelFolder = OrdinalEncoder.class.getClassLoader().getResource(this.getFilename()).getPath();
+        this.encoderPath = modelFolder;
 
         try {
             JsonReader reader = Json.createReader(new FileReader(this.encoderPath));

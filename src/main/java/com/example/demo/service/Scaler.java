@@ -4,6 +4,8 @@ import ai.onnxruntime.OnnxTensor;
 import ai.onnxruntime.OrtEnvironment;
 import ai.onnxruntime.OrtException;
 import ai.onnxruntime.OrtSession;
+
+import com.example.demo.api.model.AlgorithmPMML;
 import com.example.demo.utils.Utils;
 
 import java.nio.FloatBuffer;
@@ -25,7 +27,8 @@ public class Scaler extends Transformer {
         this.env = OrtEnvironment.getEnvironment();
         this.opts = new OrtSession.SessionOptions();
         try{
-            this.session = env.createSession(this.getFolderName() + this.getFilename(), opts);
+            String modelFolder = Scaler.class.getClassLoader().getResource(this.getFilename()).getPath();
+            this.session = env.createSession(modelFolder, opts);
         }
         catch(OrtException e){
             System.out.println(e + "\n");
